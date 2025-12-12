@@ -820,7 +820,7 @@ def agg_loss(
         seq_losses = torch.sum(loss_mat * loss_mask, dim=-1)
         if loss_scale_factor is None:
             loss_scale_factor = loss_mask.shape[-1]
-        loss = torch.sum(seq_losses) / loss_scale_factor
+        loss = torch.mean(seq_losses / loss_scale_factor)
     else:
         raise ValueError(f"Invalid loss_agg_mode: {loss_agg_mode}")
 
